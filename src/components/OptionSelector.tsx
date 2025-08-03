@@ -76,54 +76,45 @@ export default function OptionSelector({
     if (type === 'dropdown') {
         return (
             <div className={`relative ${className}`}>
-                {title && (
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        {title}
-                    </label>
-                )}
                 <div className="relative">
                     <button
                         type="button"
                         onClick={() => !disabled && setIsOpen(!isOpen)}
                         disabled={disabled}
-                        className={`w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-left focus:ring-2 focus:ring-blue-500 focus:border-transparent ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+                        className={`w-full p-3 border border-gray-300 rounded-full bg-white ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
                             }`}
                     >
-                        <span>{getSelectedLabel()}</span>
+                        <span className='text-color-txt mr-4'>{getSelectedLabel()}</span>
                         <svg
                             className={`absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
                             fill="none"
-                            stroke="currentColor"
+                            stroke="#1D364D"
                             viewBox="0 0 24 24"
                         >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-
+                    {/* --color-background-white */}
                     {isOpen && !disabled && (
-                        <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg max-h-60 overflow-auto">
+                        <div className="absolute bg-white text-white top-15 left-1/2 transform -translate-x-1/2 z-10 w-full min-w-3xs rounded-md shadow-lg overflow-auto">
                             {options.map((option) => (
                                 <div
                                     key={option.value}
                                     onClick={() => !option.disabled && handleDropdownChange(option.value)}
-                                    className={`p-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-600 flex items-center ${option.disabled ? 'opacity-50 cursor-not-allowed' : ''
-                                        } ${selectedValues.includes(option.value) ? 'bg-blue-50 dark:bg-blue-900' : ''}`}
+                                    className={`p-3 cursor-pointer hover:shadow-lg flex items-center 
+                                        ${option.disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
                                 >
                                     {multiple && (
                                         <input
                                             type="checkbox"
                                             checked={selectedValues.includes(option.value)}
                                             onChange={() => { }}
-                                            className="mr-3 text-blue-600 focus:ring-blue-500"
+                                            className="mr-3 hover:shadow-lg"
                                             disabled={option.disabled}
                                         />
                                     )}
-                                    <span className="text-gray-900 dark:text-white">{option.label}</span>
-                                    {selectedValues.includes(option.value) && !multiple && (
-                                        <svg className="ml-auto w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                        </svg>
-                                    )}
+                                    <span className={`text-black ${selectedValues.includes(option.value) ? 'text-selected-red' : ''}`}>{option.label}</span>
+
                                 </div>
                             ))}
                         </div>
@@ -142,11 +133,6 @@ export default function OptionSelector({
 
     return (
         <div className={className}>
-            {title && (
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                    {title}
-                </label>
-            )}
             <div className="space-y-2">
                 {options.map((option) => (
                     <label
@@ -166,11 +152,11 @@ export default function OptionSelector({
                             }
                             disabled={option.disabled || disabled}
                             className={`mr-3 ${type === 'checkbox'
-                                    ? 'text-blue-600 focus:ring-blue-500 rounded'
-                                    : 'text-blue-600 focus:ring-blue-500'
+                                ? 'text-blue-600 focus:ring-blue-500 rounded'
+                                : 'text-blue-600 focus:ring-blue-500'
                                 }`}
                         />
-                        <span className="text-gray-900 dark:text-white select-none">
+                        <span className="text-[#1D364D] dark:text-white select-none]">
                             {option.label}
                         </span>
                     </label>

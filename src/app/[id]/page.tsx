@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
-import { OptionSelector } from '@/components';
 import { useCart } from '@/contexts/CartContext';
 import Header from '@/components/Header';
+import { toast } from 'react-hot-toast';
 
 interface SelectibleOption {
     option_type: string;
@@ -84,7 +84,7 @@ export default function ProductDetailPage() {
                             {error?.message || 'Unable to load product details'}
                         </p>
                         <Link
-                            href="/products"
+                            href="/"
                             className="text-blue-600 hover:text-blue-800 dark:text-blue-400"
                         >
                             Back to Products
@@ -96,22 +96,26 @@ export default function ProductDetailPage() {
     }
 
     const handleAddToCart = () => {
-        if (product.stock_quantity === 0) return;
+        if (product.stock_quantity === 0) {
+            toast.error('This item is out of stock');
+            return;
+        }
 
         // Check if option selection is required but not selected
         if (product.selectible_option && !selectedOption) {
-            alert(`Please select a ${product.selectible_option.option_name.toLowerCase()} before adding to cart`);
+            toast.error(`Please select a ${product.selectible_option.option_name.toLowerCase()} before adding to cart`);
             return;
         }
 
         addToCart({
-            id: product.id,
+            id: `${product.id}-${selectedOption}`,
             name: product.product_name,
             price: product.price,
             image: getPlaceholderImage(product.category),
-            selectedOptions: selectedOption ? [selectedOption] : undefined,
+            selectedOptions: selectedOption ? selectedOption : undefined,
         });
 
+        toast.success(`${product.product_name} added to cart!`);
         console.log(`Added ${product.product_name} to cart with option:`, selectedOption);
     };
 
@@ -130,7 +134,7 @@ export default function ProductDetailPage() {
             <div className="container mx-auto px-4 py-8">
                 <div className="mb-6">
                     <Link
-                        href="/products"
+                        href="/"
                         className="text-blue-600 hover:text-blue-800 dark:text-blue-400 text-sm"
                     >
                         ← Back to Products

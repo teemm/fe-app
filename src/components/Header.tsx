@@ -2,8 +2,11 @@
 import Link from 'next/link';
 import { useCart } from '@/contexts/CartContext';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
+    const router = useRouter();
+
     const { items, removeFromCart, clearCart, getTotalPrice, getTotalItems, updateQuantity } = useCart();
     const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -11,12 +14,16 @@ export default function Header() {
         setIsCartOpen(!isCartOpen);
     };
 
-    const handleQuantityChange = (id: string, newQuantity: number) => {
+    const handleQuantityChange = (uniqueKey: string, newQuantity: number) => {
         if (newQuantity === 0) {
-            removeFromCart(id);
+            removeFromCart(uniqueKey);
         } else {
-            updateQuantity(id, newQuantity);
+            updateQuantity(uniqueKey, newQuantity);
         }
+    };
+
+    const handleCheckout = () => {
+        router.push('/checkout');
     };
 
     return (
@@ -71,50 +78,53 @@ export default function Header() {
                                     ) : (
                                         <>
                                             <div className="max-h-64 overflow-y-auto">
-                                                {items.map((item) => (
-                                                    <div key={`${item.id}-${JSON.stringify(item.selectedOptions)}`} className="p-4 border-b border-gray-100 dark:border-gray-700 last:border-b-0">
-                                                        <div className="flex items-center space-x-3">
-                                                            <img
-                                                                src={item.image}
-                                                                alt={item.name}
-                                                                className="w-12 h-12 object-cover rounded"
-                                                            />
-                                                            <div className="flex-1 min-w-0">
-                                                                <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
-                                                                    {item.name}
-                                                                </p>
-                                                                <p className="text-sm text-gray-500 dark:text-gray-400">
-                                                                    ${item.price.toFixed(2)}
-                                                                </p>
-                                                            </div>
-                                                            <div className="flex items-center space-x-2">
-                                                                <button
-                                                                    onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                                                                    className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500"
-                                                                >
-                                                                    -
-                                                                </button>
-                                                                <span className="text-sm font-medium text-gray-900 dark:text-white min-w-[20px] text-center">
-                                                                    {item.quantity}
-                                                                </span>
-                                                                <button
-                                                                    onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                                                                    className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500"
-                                                                >
-                                                                    +
-                                                                </button>
-                                                                <button
-                                                                    onClick={() => removeFromCart(item.id)}
-                                                                    className="ml-2 text-red-500 hover:text-red-700"
-                                                                >
-                                                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                                                        <path fillRule="evenodd" d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9zM4 5a2 2 0 012-2h8a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm2.5 4a.5.5 0 01.5-.5h1.5a.5.5 0 010 1H7a.5.5 0 01-.5-.5z" clipRule="evenodd" />
-                                                                    </svg>
-                                                                </button>
+                                                {items.map((item) => {
+                                                    const uniqueKey = `${item.id}`;
+                                                    return (
+                                                        <div key={uniqueKey} className="p-4 border-b border-gray-100 dark:border-gray-700 last:border-b-0">
+                                                            <div className="flex items-center space-x-3">
+                                                                <img
+                                                                    src={item.image}
+                                                                    alt={item.name}
+                                                                    className="w-12 h-12 object-cover rounded"
+                                                                />
+                                                                <div className="flex-1 min-w-0">
+                                                                    <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                                                                        {item.name}
+                                                                    </p>
+                                                                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                                                                        ${item.price.toFixed(2)}
+                                                                    </p>
+                                                                </div>
+                                                                <div className="flex items-center space-x-2">
+                                                                    <button
+                                                                        onClick={() => handleQuantityChange(uniqueKey, item.quantity - 1)}
+                                                                        className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500"
+                                                                    >
+                                                                        -
+                                                                    </button>
+                                                                    <span className="text-sm font-medium text-gray-900 dark:text-white min-w-[20px] text-center">
+                                                                        {item.quantity}
+                                                                    </span>
+                                                                    <button
+                                                                        onClick={() => handleQuantityChange(uniqueKey, item.quantity + 1)}
+                                                                        className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500"
+                                                                    >
+                                                                        +
+                                                                    </button>
+                                                                    <button
+                                                                        onClick={() => removeFromCart(uniqueKey)}
+                                                                        className="ml-2 text-red-500 hover:text-red-700"
+                                                                    >
+                                                                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                                                            <path fillRule="evenodd" d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9zM4 5a2 2 0 012-2h8a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm2.5 4a.5.5 0 01.5-.5h1.5a.5.5 0 010 1H7a.5.5 0 01-.5-.5z" clipRule="evenodd" />
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                ))}
+                                                    )
+                                                })}
                                             </div>
 
                                             <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-b-lg">
@@ -123,7 +133,8 @@ export default function Header() {
                                                         Total: ${getTotalPrice().toFixed(2)}
                                                     </span>
                                                 </div>
-                                                <button className="w-full bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-500 mb-2">
+                                                <button className="w-full bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-500 mb-2"
+                                                    onClick={handleCheckout}>
                                                     Continue To Checkout
                                                 </button>
                                                 <button

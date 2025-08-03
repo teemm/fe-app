@@ -22,35 +22,32 @@ const Product: React.FC<ProductProps> = ({
     category,
 }) => {
     return (
-        <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 dark:bg-gray-800">
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-300">
             <div className="relative">
                 <Image
                     src={image}
                     alt={name}
                     width={300}
-                    height={200}
-                    className="w-full h-48 object-cover"
+                    height={240}
+                    className="h-[220px] object-cover full-width"
                 />
-                {category && (
+                {/* {category && (
                     <span className="absolute top-2 left-2 bg-blue-600 text-white px-2 py-1 rounded text-xs">
                         {category}
                     </span>
-                )}
+                )} */}
             </div>
 
-            <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">{name}</h3>
+            <div className="pr-4 pl-4">
+                <div className="text-xl text-card-main mb-3 mt-5">{name}</div>
 
                 {description && (
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">
+                    <span className="text-card-secondary text-md mb-10 line-clamp-2">
                         {description}
-                    </p>
-                )}
-
-                <div className="flex items-center justify-between">
-                    <span className="text-xl font-bold text-blue-600 dark:text-blue-400">
-                        ${price.toFixed(2)}
                     </span>
+                )}
+                <div className="flex items-center justify-center pt-10 pb-10 text-2xl font-semibold border-t border-gray-200">
+                    ${price.toFixed(2)}
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@ export interface CartItem {
     price: number;
     image: string;
     quantity: number;
-    selectedOptions?: string[];
+    selectedOptions?: string;
 }
 
 interface CartContextType {

@@ -48,8 +48,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange, maxVisiblePages = 7
                 onClick={handlePrevious}
                 disabled={currentPage === 1}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currentPage === 1
-                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-800 dark:text-gray-600'
-                        : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700'
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-800 dark:text-gray-600'
+                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700'
                     }`}
             >
                 Previous
@@ -60,8 +60,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange, maxVisiblePages = 7
                     key={page}
                     onClick={() => onPageChange(page)}
                     className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${currentPage === page
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700'
                         }`}
                 >
                     {page}
@@ -72,8 +72,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange, maxVisiblePages = 7
                 onClick={handleNext}
                 disabled={currentPage === totalPages}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currentPage === totalPages
-                        ? 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-800 dark:text-gray-600'
-                        : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700'
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-800 dark:text-gray-600'
+                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700'
                     }`}
             >
                 Next

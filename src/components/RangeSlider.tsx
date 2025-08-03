@@ -43,12 +43,12 @@ export default function RangeSlider({
         }
     };
 
-    const getDisplayLabel = () => {
-        if (localValue[0] === min && localValue[1] === max) {
-            return title || 'Price';
-        }
-        return `$${localValue[0]} - $${localValue[1]}`;
-    };
+    // const getDisplayLabel = () => {
+    //     if (localValue[0] === min && localValue[1] === max) {
+    //         return title || 'Price';
+    //     }
+    //     return `$${localValue[0]} - $${localValue[1]}`;
+    // };
 
     return (
         <div className={`relative ${className}`}>
@@ -57,16 +57,13 @@ export default function RangeSlider({
                 type="button"
                 onClick={() => !disabled && setIsOpen(!isOpen)}
                 disabled={disabled}
-                className={`w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-left focus:ring-2 focus:ring-blue-500 focus:border-transparent ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+                className={`w-full p-3 border border-gray-300 rounded-full bg-white ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
                     }`}
             >
                 <div className="flex items-center justify-between">
                     <div>
-                        <div className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        <div>
                             {title || 'Price Range'}
-                        </div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">
-                            {getDisplayLabel()}
                         </div>
                     </div>
                     <svg
@@ -82,15 +79,8 @@ export default function RangeSlider({
 
             {/* Dropdown Content */}
             {isOpen && !disabled && (
-                <div className="absolute z-10 w-full mt-1 p-4 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-lg">
+                <div className="absolute bg-white text-white top-15 left-1/2 transform -translate-x-1/2 z-10 w-full min-w-xs rounded-md shadow-lg overflow-auto p-4">
                     <div className="space-y-4">
-                        {/* Range Display */}
-                        <div className="text-center">
-                            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                                ${localValue[0]} - ${localValue[1]}
-                            </span>
-                        </div>
-
                         {/* Dual Range Slider */}
                         <div className="relative">
                             {/* Track Background */}
@@ -127,27 +117,29 @@ export default function RangeSlider({
                         </div>
 
                         {/* Input Fields */}
-                        <div className="flex items-center space-x-2">
-                            <div className="flex-1">
+                        <div className="flex items-center space-x-2 mt-6">
+                            <div className="flex-1 relative">
+                                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">$</span>
                                 <input
                                     type="number"
                                     value={localValue[0]}
                                     onChange={(e) => handleRangeChange('min', parseInt(e.target.value) || min)}
                                     min={min}
                                     max={localValue[1]}
-                                    className="w-full px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                                    className="border w-full pl-4 pr-2 py-1 text-sm border-gray-500 rounded-xl min-h-10 text-gray-500"
                                     placeholder="Min"
                                 />
                             </div>
-                            <span className="text-gray-500 dark:text-gray-400">–</span>
-                            <div className="flex-1">
+                            <span className="text-gray-500 dark:text-gray-500">–</span>
+                            <div className="flex-1 relative">
+                                <span className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">$</span>
                                 <input
                                     type="number"
                                     value={localValue[1]}
                                     onChange={(e) => handleRangeChange('max', parseInt(e.target.value) || max)}
                                     min={localValue[0]}
                                     max={max}
-                                    className="w-full px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                                    className="border w-full pl-4 pr-2 py-1 text-sm border-gray-500 rounded-xl min-h-10 text-gray-500"
                                     placeholder="Max"
                                 />
                             </div>
@@ -156,7 +148,7 @@ export default function RangeSlider({
                         {/* Reset Button */}
                         <button
                             onClick={() => onChange([min, max])}
-                            className="w-full py-1 text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                            className="w-full py-1 text-sm text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
                         >
                             Reset
                         </button>

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/contexts/CartContext";
 import QueryProvider from "@/providers/QueryProvider";
+import toast, { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <QueryProvider>
           <CartProvider>{children}</CartProvider>
         </QueryProvider>
+        <Toaster />
       </body>
     </html>
   );
