@@ -96,11 +96,11 @@ export default function ProductsPage() {
 
     const getPlaceholderImage = (category: string) => {
         const imageMap: { [key: string]: string } = {
-            'Shoes': 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=230&h=240&fit=crop',
-            'Shirts': 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=230&h=240&fit=crop',
-            'Electronics': 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=230&h=240&fit=crop',
+            'Shoes': 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=300&h=240&fit=crop',
+            'Shirts': 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&h=240&fit=crop',
+            'Electronics': 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=240&fit=crop',
         };
-        return imageMap[category] || 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=230&h=240&fit=crop';
+        return imageMap[category] || 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=300&h=240&fit=crop';
     };
 
     // Transform API products to UI format
@@ -204,11 +204,11 @@ export default function ProductsPage() {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+            <div className="min-h-screen">
                 <Header />
                 <div className="container mx-auto px-4 py-8">
                     <div className="flex justify-center items-center h-64">
-                        <div className="text-xl text-gray-600 dark:text-gray-300">
+                        <div className="text-xl text-black">
                             Loading products...
                         </div>
                     </div>

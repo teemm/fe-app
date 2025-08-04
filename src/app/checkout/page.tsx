@@ -130,16 +130,16 @@ export default function CheckoutPage() {
 
     if (items.length === 0 && !showSuccess) {
         return (
-            <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+            <div className="min-h-screen">
                 <Header />
                 <div className="container mx-auto px-4 py-8">
                     <div className="text-center">
-                        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                        <h1 className="text-2xl font-bold text-black mb-4">
                             Your cart is empty
                         </h1>
                         <button
                             onClick={() => router.push('/')}
-                            className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                            className="px-6 py-2 bg-blue-600 text-black rounded hover:bg-blue-700"
                         >
                             Continue Shopping
                         </button>
@@ -151,7 +151,7 @@ export default function CheckoutPage() {
 
     if (showSuccess) {
         return (
-            <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+            <div className="min-h-screen">
                 <Header />
                 <div className="container mx-auto px-4 py-8">
                     <div className="text-center">
@@ -166,38 +166,38 @@ export default function CheckoutPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <div className="min-h-screen">
             <Header />
             <div className="container mx-auto px-4 py-8">
                 <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Checkout</h1>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* Order Summary */}
-                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Order Summary</h2>
+                    <div className="p-6 rounded-lg shadow bg-secondary-gray dark:secondary-gray">
+                        <h2 className="text-xl font-semibold text-black mb-4">Order Summary</h2>
                         <div className="space-y-4">
                             {items.map((item) => (
                                 <div key={item.id} className="flex justify-between">
-                                    <span className="text-gray-700 dark:text-gray-300">
+                                    <span className="text-black">
                                         {item.name} × {item.quantity}
                                     </span>
-                                    <span className="text-gray-900 dark:text-white font-medium">
+                                    <span className="text-black font-medium">
                                         ${(item.price * item.quantity).toFixed(2)}
                                     </span>
                                 </div>
                             ))}
                             <div className="border-t pt-4">
                                 <div className="flex justify-between text-xl font-bold">
-                                    <span className="text-gray-900 dark:text-white">Total:</span>
-                                    <span className="text-gray-900 dark:text-white">${getTotalPrice().toFixed(2)}</span>
+                                    <span className="text-black">Total:</span>
+                                    <span className="text-black">${getTotalPrice().toFixed(2)}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     {/* Checkout Form */}
-                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Shipping Information</h2>
+                    <div className="bg-secondary-gray p-6 rounded-lg shadow">
+                        <h2 className="text-xl font-semibold text-black mb-4">Shipping Information</h2>
 
                         {errors.general && (
                             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
@@ -207,7 +207,7 @@ export default function CheckoutPage() {
 
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                <label className="block text-sm font-medium text-black mb-1">
                                     Name *
                                 </label>
                                 <input
@@ -221,7 +221,7 @@ export default function CheckoutPage() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                <label className="block text-sm font-medium text-black mb-1">
                                     Surname *
                                 </label>
                                 <input
@@ -235,7 +235,7 @@ export default function CheckoutPage() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                <label className="block text-sm font-medium text-black mb-1">
                                     Phone Number *
                                 </label>
                                 <input
@@ -249,7 +249,7 @@ export default function CheckoutPage() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                <label className="block text-sm font-medium text-black mb-1">
                                     Email *
                                 </label>
                                 <input
@@ -263,7 +263,7 @@ export default function CheckoutPage() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                                <label className="block text-sm font-medium text-black mb-1">
                                     Zip Code *
                                 </label>
                                 <input

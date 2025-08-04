@@ -22,13 +22,7 @@ const Product: React.FC<ProductProps> = ({
     return (
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-300">
             <div className="relative">
-                <Image
-                    src={image}
-                    alt={name}
-                    width={300}
-                    height={240}
-                    className="h-[220px] object-cover full-width"
-                />
+                <div className="h-[220px] bg-cover bg-center" style={{ backgroundImage: `url(${image})` }}></div>
             </div>
 
             <div className="pr-4 pl-4">

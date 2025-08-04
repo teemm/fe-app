@@ -81,7 +81,7 @@ export default function Header() {
                                                 {items.map((item) => {
                                                     const uniqueKey = `${item.id}`;
                                                     return (
-                                                        <div key={uniqueKey} className="p-4 border-b last:border-b-0">
+                                                        <div key={uniqueKey} className="p-4 border-b border-gray-200 last:border-b-0">
                                                             <div className="flex items-center space-x-3">
                                                                 <img
                                                                     src={item.image}
