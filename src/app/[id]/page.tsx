@@ -129,7 +129,7 @@ export default function ProductDetailPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <div className="min-h-screen">
             <Header />
             <div className="container mx-auto px-4 py-8">
                 <div className="mb-6">
@@ -141,7 +141,7 @@ export default function ProductDetailPage() {
                     </Link>
                 </div>
 
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+                <div className="rounded-lg shadow-lg overflow-hidden">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
                         {/* Product Image */}
                         <div className="aspect-square bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
@@ -155,22 +155,22 @@ export default function ProductDetailPage() {
                         {/* Product Details */}
                         <div className="space-y-6">
                             {/* Product Name */}
-                            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+                            <h1 className="text-3xl font-bold text-black">
                                 {product.product_name}
                             </h1>
 
                             {/* Brand */}
-                            <p className="text-gray-600 dark:text-gray-400">
+                            <div className="text-card-secondary">
                                 {product.brand}
-                            </p>
+                            </div>
 
                             {/* Price */}
-                            <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                            <div className="text-2xl text-black">
                                 ${product.price.toFixed(2)}
                             </div>
 
                             {/* Description */}
-                            <div className="text-gray-600 dark:text-gray-300">
+                            <div className="text-card-secondary">
                                 {product.description}
                             </div>
 
@@ -219,10 +219,7 @@ export default function ProductDetailPage() {
                                 </span>
                                 <span className={`text-sm font-medium ${product.stock_quantity === 0
                                     ? 'text-red-500'
-                                    : product.stock_quantity < 5
-                                        ? 'text-yellow-500'
-                                        : 'text-green-500'
-                                    }`}>
+                                    : 'text-green-500'}`}>
                                     {product.stock_quantity === 0 ? 'Out of stock' : product.stock_quantity}
                                 </span>
                             </div>

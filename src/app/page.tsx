@@ -248,8 +248,9 @@ export default function ProductsPage() {
                     </h1>
                 </div>
                 <div className="flex flex-col md:flex-row justify-between items-start mb-6">
-                    <div className="flex items-center space-x-6 mb-4 md:mb-0 p-2 bg-secondary-gray rounded">
-                        <label className="flex items-center p-2 bg-white rounded text-black">
+                    <div className="flex items-center space-x-6 mb-4 md:mb-0 p-2 bg-secondary-gray rounded-md">
+                        <label className={`flex items-center p-2 rounded-md
+                            ${selectedCategory === 'All' ? 'bg-white' : ''}`}>
                             <input
                                 type="radio"
                                 name="category"
@@ -261,7 +262,8 @@ export default function ProductsPage() {
                             <span className="text-black">All</span>
                         </label>
                         {categories?.map((category) => (
-                            <label key={category.id} className="flex items-center bg-white p-2 rounded">
+                            <label key={category.id} className={`flex items-center p-2 rounded-md
+                            ${selectedCategory === category.name ? 'bg-white' : ''}`}>
                                 <input
                                     type="radio"
                                     name="category"

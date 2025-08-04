@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 export default function Header() {
     const router = useRouter();
 
-    const { items, removeFromCart, clearCart, getTotalPrice, getTotalItems, updateQuantity } = useCart();
+    const { items, removeFromCart, getTotalPrice, getTotalItems, updateQuantity } = useCart();
     const [isCartOpen, setIsCartOpen] = useState(false);
 
     const toggleCart = () => {
@@ -30,7 +30,7 @@ export default function Header() {
         <header className="bg-white dark:transparent shadow-sm relative">
             <div className="container mx-auto px-4 py-4">
                 <div className="flex items-center justify-between">
-                    <Link href="/" className="text-2xl font-bold text-blue-900 dark:text-white">
+                    <Link href="/" className="text-2xl font-bold italic text-blue-900 dark:text-white">
                         Flat Rock Tech
                     </Link>
 
@@ -41,7 +41,7 @@ export default function Header() {
                                 className="relative p-2"
                             >
                                 <svg
-                                    className="w-6 h-6 text-gray-600 dark:text-gray-300"
+                                    className="w-6 h-6 text-gray-600 dark:text-black"
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -62,9 +62,9 @@ export default function Header() {
 
                             {/* Cart Dropdown */}
                             {isCartOpen && (
-                                <div className="absolute right-0 top-full mt-2 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-50">
-                                    <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-                                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                                    <div className="p-4 border-b border-gray-200">
+                                        <h3 className="text-lg font-semibold text-gray-900">
                                             Shopping Cart
                                         </h3>
                                     </div>
@@ -81,7 +81,7 @@ export default function Header() {
                                                 {items.map((item) => {
                                                     const uniqueKey = `${item.id}`;
                                                     return (
-                                                        <div key={uniqueKey} className="p-4 border-b border-gray-100 dark:border-gray-700 last:border-b-0">
+                                                        <div key={uniqueKey} className="p-4 border-b last:border-b-0">
                                                             <div className="flex items-center space-x-3">
                                                                 <img
                                                                     src={item.image}
@@ -99,16 +99,16 @@ export default function Header() {
                                                                 <div className="flex items-center space-x-2">
                                                                     <button
                                                                         onClick={() => handleQuantityChange(uniqueKey, item.quantity - 1)}
-                                                                        className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500"
+                                                                        className="w-6 h-6 rounded-full bg-secondary-gray flex items-center justify-center text-black hover:bg-gray-300 dark:hover:bg-gray-500"
                                                                     >
                                                                         -
                                                                     </button>
-                                                                    <span className="text-sm font-medium text-gray-900 dark:text-white min-w-[20px] text-center">
+                                                                    <span className="text-sm font-medium text-black min-w-[20px] text-center">
                                                                         {item.quantity}
                                                                     </span>
                                                                     <button
                                                                         onClick={() => handleQuantityChange(uniqueKey, item.quantity + 1)}
-                                                                        className="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-500"
+                                                                        className="w-6 h-6 rounded-full bg-secondary-gray flex items-center justify-center text-black hover:bg-gray-300 dark:hover:bg-gray-500"
                                                                     >
                                                                         +
                                                                     </button>
@@ -116,9 +116,14 @@ export default function Header() {
                                                                         onClick={() => removeFromCart(uniqueKey)}
                                                                         className="ml-2 text-red-500 hover:text-red-700"
                                                                     >
-                                                                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                                                            <path fillRule="evenodd" d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9zM4 5a2 2 0 012-2h8a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm2.5 4a.5.5 0 01.5-.5h1.5a.5.5 0 010 1H7a.5.5 0 01-.5-.5z" clipRule="evenodd" />
+                                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M9.5 14.5L9.5 11.5" stroke="#222222" strokeLinecap="round" />
+                                                                            <path d="M14.5 14.5L14.5 11.5" stroke="#222222" strokeLinecap="round" />
+                                                                            <path d="M3 6.5H21V6.5C19.5955 6.5 18.8933 6.5 18.3889 6.83706C18.1705 6.98298 17.983 7.17048 17.8371 7.38886C17.5 7.89331 17.5 8.59554 17.5 10V15.5C17.5 17.3856 17.5 18.3284 16.9142 18.9142C16.3284 19.5 15.3856 19.5 13.5 19.5H10.5C8.61438 19.5 7.67157 19.5 7.08579 18.9142C6.5 18.3284 6.5 17.3856 6.5 15.5V10C6.5 8.59554 6.5 7.89331 6.16294 7.38886C6.01702 7.17048 5.82952 6.98298 5.61114 6.83706C5.10669 6.5 4.40446 6.5 3 6.5V6.5Z" stroke="#222222" strokeLinecap="round" />
+                                                                            <path d="M9.5 3.50024C9.5 3.50024 10 2.5 12 2.5C14 2.5 14.5 3.5 14.5 3.5" stroke="#222222" strokeLinecap="round" />
                                                                         </svg>
+
+
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -127,21 +132,15 @@ export default function Header() {
                                                 })}
                                             </div>
 
-                                            <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 rounded-b-lg">
+                                            <div className="p-2 border-t border border-gray-200 rounded-b-lg">
                                                 <div className="flex justify-between items-center mb-3">
-                                                    <span className="text-lg font-semibold text-gray-900 dark:text-white">
+                                                    <span className="text-lg font-semibold text-black">
                                                         Total: ${getTotalPrice().toFixed(2)}
                                                     </span>
                                                 </div>
-                                                <button className="w-full bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-500 mb-2"
+                                                <button className="w-full bg-black text-white py-2 px-4 rounded-md bg-main-green"
                                                     onClick={handleCheckout}>
                                                     Continue To Checkout
-                                                </button>
-                                                <button
-                                                    onClick={clearCart}
-                                                    className="w-full bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 dark:bg-gray-600 dark:text-gray-200 dark:hover:bg-gray-500"
-                                                >
-                                                    Clear Cart
                                                 </button>
                                             </div>
                                         </>

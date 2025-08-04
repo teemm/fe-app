@@ -14,12 +14,10 @@ interface ProductProps {
 }
 
 const Product: React.FC<ProductProps> = ({
-    id,
     name,
     price,
     image,
-    description,
-    category,
+    description
 }) => {
     return (
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md transition-shadow duration-300">
@@ -31,11 +29,6 @@ const Product: React.FC<ProductProps> = ({
                     height={240}
                     className="h-[220px] object-cover full-width"
                 />
-                {/* {category && (
-                    <span className="absolute top-2 left-2 bg-blue-600 text-white px-2 py-1 rounded text-xs">
-                        {category}
-                    </span>
-                )} */}
             </div>
 
             <div className="pr-4 pl-4">

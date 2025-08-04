@@ -15,7 +15,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, maxVisiblePages = 7
 
         const halfVisible = Math.floor(maxVisiblePages / 2);
         let start = Math.max(1, currentPage - halfVisible);
-        let end = Math.min(totalPages, start + maxVisiblePages - 1);
+        const end = Math.min(totalPages, start + maxVisiblePages - 1);
 
         if (end - start + 1 < maxVisiblePages) {
             start = Math.max(1, end - maxVisiblePages + 1);
@@ -43,13 +43,13 @@ const Pagination = ({ currentPage, totalPages, onPageChange, maxVisiblePages = 7
     }
 
     return (
-        <div className="flex items-center justify-center space-x-2 mt-8">
+        <div className="flex w-full items-center justify-end space-x-2 mt-8">
             <button
                 onClick={handlePrevious}
                 disabled={currentPage === 1}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currentPage === 1
-                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-800 dark:text-gray-600'
-                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700'
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors text-black border border-gray-300 ${currentPage === 1
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                    : ''
                     }`}
             >
                 Previous
@@ -59,9 +59,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange, maxVisiblePages = 7
                 <button
                     key={page}
                     onClick={() => onPageChange(page)}
-                    className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${currentPage === page
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700'
+                    className={`w-10 h-10 rounded-lg text-sm border border-gray-300 font-medium transition-colors text-black ${currentPage === page
+                        ? 'bg-pg-active'
+                        : 'bg-white'
                         }`}
                 >
                     {page}
@@ -71,9 +71,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange, maxVisiblePages = 7
             <button
                 onClick={handleNext}
                 disabled={currentPage === totalPages}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currentPage === totalPages
-                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed dark:bg-gray-800 dark:text-gray-600'
-                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700'
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors text-black border border-gray-300 ${currentPage === totalPages
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                    : ''
                     }`}
             >
                 Next

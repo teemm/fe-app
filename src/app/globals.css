@@ -4,9 +4,11 @@
   --background: #EDEDED;
   --color-txt: #EBEDEC;
   --color-red: #EA2B2B;
-  --color-card-main: #F7F5F7;
+  --color-card-main: #545454;
   --color-card-secondary: #98A2B3;
   --color-secondary-gray: #e2e2e2;
+  --color-main-green: #2D9C07;
+  --color-pg-active: #F4E8F3;
 
 }
 
@@ -17,6 +19,8 @@
   --color-card-main: var(--color-card-main);
   --color-card-secondary: var(--color-card-secondary);
   --color-secondary-gray: var(--color-secondary-gray);
+  --color-main-green: var(--color-main-green);
+  --color-pg-active: var(--color-pg-active);
 }
 
 body {
